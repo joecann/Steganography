@@ -91,20 +91,4 @@ public class EncodeImage {
 	    
 	    return colorChannel;
 	}
-	
-	public static void main(String[] args) {
-		EncodeImage image = new EncodeImage();
-		try {
-			String text = "password";
-			String imageURL = "C:\\Users\\JoeCa\\OneDrive\\Pictures\\image.jpg";
-			String fileURL = "C:\\Users\\JoeCa\\OneDrive\\Desktop\\hidden2.png";
-			image.encode(imageURL,text,fileURL);
-		} 
-		
-		catch (IOException e) { e.printStackTrace(); }
-		
-		
-		
-	}
-
 }
