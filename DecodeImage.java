@@ -52,19 +52,4 @@ public class DecodeImage {
 		}
 		return convertedBinary.toString();
 	}
-	
-	public static void main(String[] args) {
-		try {
-			DecodeImage image = new DecodeImage();
-			String output = image.decode("C:\\Users\\JoeCa\\OneDrive\\Desktop\\hidden2.png");
-			System.out.println(output);
-			
-			String key = "password";
-			Random ran = new Random(key.hashCode());
-			
-			System.out.println(ran);			
-		} 
-		catch (Exception e) {e.printStackTrace();}
-	}
-
 }
