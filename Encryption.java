@@ -72,17 +72,4 @@ public class Encryption {
 
         return encryptedStr.toString();
 	}
-
-	public static void main(String[] args) {
-
-		String text = "qwerty123";
-		System.out.println("Original text:   " + text);
-		byte[] salt = Encryption.generateSalt();
-		SecretKey secretKey = Encryption.getKeyFromPassword(text, salt);
-		String encryptedText = Encryption.encryption(text,secretKey);
-		System.out.println("Encrypted text:  " + encryptedText);
-
-		String decryptedText = Decryption.decryption(encryptedText,secretKey,salt);
-		System.out.println("Decrypted text:  " + decryptedText);
-	}
 }
