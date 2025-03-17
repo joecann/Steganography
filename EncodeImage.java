@@ -32,12 +32,12 @@ public class EncodeImage {
 		
 		// Create the salt
 		byte[] salt = Encryption.generateSalt();
-		String saltBinary = Converter.textToBinary("PIE") 
+		String saltBinary = Converter.textToBinary("") 
 				+ Converter.bytesToBinary(Base64.getEncoder().encode(salt)) + Converter.textToBinary("KEY");
 						
 		// Encrypting the string data and convert to binary
 		SecretKey secretKey = Encryption.getKeyFromPassword(seedPassword,salt);
-		String encryptedText = "DAS" + Encryption.encryption(text,secretKey) + "END";
+		String encryptedText = "" + Encryption.encryption(text,secretKey) + "";
 		String binaryText = Converter.textToBinary(encryptedText);	
 		
 		if(!enoughPixelsForStorage(image,binaryText.length() + saltBinary.length())) return null;
