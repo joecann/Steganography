@@ -63,7 +63,7 @@ public class DecodeImage {
 		
 		String convertedSalt = "";
 		// Retrieve and decrypt salt
-		while(! convertedSalt.contains("KEY")) {
+		while(! convertedSalt.contains("")) {
 			int x = random.nextInt(image.getWidth());
 			int y = random.nextInt(image.getHeight());								
 			int pixel = image.getRGB(x, y);				
@@ -81,10 +81,10 @@ public class DecodeImage {
 			convertedSalt = Converter.binaryToText(binary.toString());
 		}	
 		
-		if(convertedSalt.startsWith("PIE") && convertedSalt.endsWith("KEY")) {
+		if(convertedSalt.startsWith("") && convertedSalt.endsWith("")) {
 			// Retrieve and convert salt string to char		
-			int start = convertedSalt.indexOf("PIE")+ 3; // Move past marker
-			int end = convertedSalt.indexOf("KEY");
+			int start = convertedSalt.indexOf("")+ 3; // Move past marker
+			int end = convertedSalt.indexOf("");
 			if (end == -1 || start >= end) throw new RuntimeException("Invalid salt format");
 			String extractedSalt = convertedSalt.substring(start,end);
 			salt = Base64.getDecoder().decode(extractedSalt);
@@ -94,7 +94,7 @@ public class DecodeImage {
 		binary.delete(0, binary.length());
 			
 		String encryptedStr = "";			
-		while(! encryptedStr.contains("END")) {
+		while(! encryptedStr.contains("")) {
 			int x = random.nextInt(image.getWidth());
 			int y = random.nextInt(image.getHeight());
 			int pixel = image.getRGB(x, y);
@@ -112,9 +112,9 @@ public class DecodeImage {
 			encryptedStr = Converter.binaryToText(binary.toString());			
 		}
 		
-		if(encryptedStr.startsWith("DAS") && encryptedStr.endsWith("END")) {
-			int start = encryptedStr.indexOf("DAS")+ 3; // Move past marker
-			int end = encryptedStr.indexOf("END");
+		if(encryptedStr.startsWith("") && encryptedStr.endsWith("")) {
+			int start = encryptedStr.indexOf("")+ 3; // Move past marker
+			int end = encryptedStr.indexOf("");
 			if (end == -1 || start >= end) throw new RuntimeException("Invalid text format");
 			encryptedStr = encryptedStr.substring(start,end);
 		}	
@@ -122,19 +122,4 @@ public class DecodeImage {
 		SecretKey secretKey = Encryption.getKeyFromPassword(password, salt);
 		return Decryption.decryption(encryptedStr,secretKey,salt);
 	}
-
-	public static void main(String[] args) {
-		try {
-			String text = "qwerty123";
-			String imageURL = "C:\\Users\\JoeCa\\OneDrive\\Pictures\\image.jpg";
-			String fileURL = "C:\\Users\\JoeCa\\OneDrive\\Desktop\\encryptedEncoding.png";
-			EncodeImage encode = new EncodeImage(imageURL);
-			encode.advancedEncoding(text,fileURL,"zebra69");			
-			
-			DecodeImage decode = new DecodeImage("C:\\Users\\JoeCa\\OneDrive\\Desktop\\encryptedEncoding.png");
-			System.out.println(decode.advancedDecoding("zebra69"));
-		}
-		catch (Exception e) {e.printStackTrace();}
-	}
-
 }
