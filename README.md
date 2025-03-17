@@ -1,1 +1,1 @@
-A simple steganography algorithm. To improve its efficiency we can introduce encrypting and randomised pixel placement
+I have written code for both a basic encoding and an advanced encoding with randomised bit placement
